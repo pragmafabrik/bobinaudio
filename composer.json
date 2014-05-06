@@ -1,0 +1,8 @@
+{
+    "minimum-stability": "dev",
+    "require": {
+        "pomm/pomm-service-provider": "dev-master",
+        "monolog/monolog": "1.6.*@dev",
+        "twig/twig": "dev-master"
+    }
+}
