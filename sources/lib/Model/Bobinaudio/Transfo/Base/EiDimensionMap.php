@@ -11,7 +11,7 @@ abstract class EiDimensionMap extends BaseObjectMap
     {
 
         $this->object_class =  'Model\Bobinaudio\Transfo\EiDimension';
-        $this->object_name  =  '"transfo"."ei_dimension"';
+        $this->object_name  =  'transfo.ei_dimension';
 
         $this->addField('ei_dimension_id', 'int4');
         $this->addField('ref', 'varchar');

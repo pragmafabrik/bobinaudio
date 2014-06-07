@@ -11,7 +11,7 @@ abstract class TransformerMap extends BaseObjectMap
     {
 
         $this->object_class =  'Model\Bobinaudio\Transfo\Transformer';
-        $this->object_name  =  '"transfo"."transformer"';
+        $this->object_name  =  'transfo.transformer';
 
         $this->addField('transformer_id', 'uuid');
         $this->addField('ref', 'varchar');
@@ -19,6 +19,14 @@ abstract class TransformerMap extends BaseObjectMap
         $this->addField('weight', 'numeric');
         $this->addField('height', 'int4');
         $this->addField('meta', 'json');
+        $this->addField('is_online', 'bool');
+        $this->addField('is_on_top', 'bool');
+        $this->addField('is_advertised', 'bool');
+        $this->addField('public_price', 'numeric');
+        $this->addField('special_offer', 'transfo.special_offer');
+        $this->addField('hook_phrase', 'text');
+        $this->addField('long_description', 'text');
+        $this->addField('display_order', 'int4');
 
         $this->pk_fields = array('');
     }
