@@ -1,8 +1,17 @@
 {
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
-        "pomm/pomm-service-provider": "dev-master",
+        "pomm/pomm-service-provider": "1.2.*@dev",
         "monolog/monolog": "1.6.*@dev",
-        "twig/twig": "dev-master"
+        "symfony/twig-bridge": "2.4.*",
+        "erusev/parsedown": "0.7.*",
+        "silex/silex": "1.2.*",
+        "symfony/validator": "2.4.*",
+        "symfony/form": "2.4.*",
+        "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
+        "twig/twig": "1.*",
+        "symfony/translation": "2.4.*",
+        "symfony/config": "2.4.*",
+        "symfony/security-csrf": "2.4.*"
     }
 }

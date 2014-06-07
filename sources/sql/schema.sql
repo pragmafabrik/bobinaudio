@@ -39,10 +39,21 @@ CREATE TYPE winding AS (
 
 ALTER TYPE transfo.winding OWNER TO greg;
 
+--
+-- Name: special_offer; Type: TYPE; Schema: transfo; Owner: greg
+--
+
+CREATE TYPE transfo.special_offer AS (
+	discount_pct smallint,
+	apply_btw tstzrange
+);
+
+
+ALTER TYPE transfo.special_offer OWNER TO greg;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
-
 --
 -- Name: ei_dimension; Type: TABLE; Schema: transfo; Owner: greg; Tablespace: 
 --
@@ -80,18 +91,25 @@ ALTER TABLE transfo.ei_dimension_ei_dimension_id_seq OWNER TO greg;
 
 ALTER SEQUENCE ei_dimension_ei_dimension_id_seq OWNED BY ei_dimension.ei_dimension_id;
 
-
 --
 -- Name: transformer; Type: TABLE; Schema: transfo; Owner: greg; Tablespace: 
 --
 
 CREATE TABLE transformer (
-    transformer_id uuid NOT NULL,
+    transformer_id uuid NOT NULL DEFAULT public.uuid_generate_v4(),
     ref character varying NOT NULL,
     ei_dimension_id integer NOT NULL,
     weight numeric(3,1) NOT NULL,
     height integer,
-    meta json
+    meta json,
+    is_online boolean not null default true,
+    is_on_top boolean not null default false,
+    is_advertised boolean not null default false,
+    public_price numeric(6,2) not null,
+    special_offer special_offer CHECK ((special_offer).discount_pct IS NOT NULL AND (special_offer).discount_pct BETWEEN 1 AND 99),
+    hook_phrase text,
+    long_description text,
+    display_order serial NOT NULL
 );
 
 

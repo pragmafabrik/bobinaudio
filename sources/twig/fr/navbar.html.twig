@@ -1,0 +1,26 @@
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ app.url_generator.generate('main_index', { "_locale":  "fr"}) }}">Bobinaudio</a>
+        <ul class="nav navbar-nav">
+          <li><a href="#about">À propos</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transformateurs <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header">Alimentation</li>
+              <li><a href="{{ app.url_generator.generate('main_list', { "category": "alimentation", "_locale": "fr" }) }}">Haute tension</a></li>
+              <li><a href="{{ app.url_generator.generate('main_list', { "category": "self", "_locale": "fr" }) }}">Selfs de filtrage</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Audio</li>
+              <li><a href="{{ app.url_generator.generate('main_list', { "category": "push-pull", "_locale": "fr" }) }}">Push Pull</a></li>
+              <li><a href="{{ app.url_generator.generate('main_list', { "category": "single-ended", "_locale": "fr" }) }}">Single Ended</a></li>
+             </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ app.url_generator.generate(app.request.get('route'), { "_locale": "en" }) }}"><img src="/images/en.png" style="max-width: 28px;" /></a></li>
+        </ul>
+      </div>
+    </div>
+
+

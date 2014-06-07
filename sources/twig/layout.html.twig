@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bobinaudio - {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% if app.locale == 'fr' %}
+    <meta name="description" content="Bobinaudio, bobinage de transformateurs de sortie pour amplificateurs hi-fi à tubes">
+    <meta name="keywords" content="amplificateurs lampes transformateur bobinage push-pull single-ended tube tetrode triode penthode">
+{% else %}
+    <meta name="description" content="Bobinaudio, winding output transformers for valve hi-fi amplifiers">
+    <meta name="keywords" content="amplifier valve transformer winding push-pull single-ended tube tetrode triode pentode">
+{% endif %}
+    <meta name="author" content="Grégoire HUBERT">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+{{ render(app.url_generator.generate("main_navbar", { "_locale": app.request.get('_locale', app.locale), "route": app.request.get('_route') })) }}
+    <div class="container">
+{% block content %}{% endblock %}
+    </div> <!-- /container -->
+    <div class="container">
+      <hr>
+
+      <footer>
+        <p>© Grégoire HUBERT 2013</p>
+      </footer>
+    </div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
