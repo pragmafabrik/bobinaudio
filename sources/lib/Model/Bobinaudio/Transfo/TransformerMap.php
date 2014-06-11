@@ -14,8 +14,9 @@ class TransformerMap extends BaseTransformerMap
     public function getSelectFields($alias = null)
     {
         $fields = parent::getSelectFields($alias);
-        $fields['hook_phrase'] = sprintf("%s->'%s'", $this->aliasField('hook_phrase', $alias), $this->culture);
-        $fields['description'] = sprintf("%s->'%s'", $this->aliasField('description', $alias), $this->culture);
+        $fields['hook_phrase'] = sprintf("%s->'%s'", $this->aliasField('hook_phrase_i18n', $alias), $this->culture);
+        $fields['description'] = sprintf("%s->'%s'", $this->aliasField('description_i18n', $alias), $this->culture);
+        unset($fields['hook_phrase_i18n'], $fields['description_i18n']);
 
         return $fields;
     }

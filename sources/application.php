@@ -18,6 +18,7 @@ $app->error(function(Exception $e, $code) use ($app) {
 
     if ($code == '500')
     {
+        /*
         $app['mailer']->send(
             \Swift_Message::newInstance()
             ->setSubject(sprintf('[pragmafabrik.com] Erreur 500'))
@@ -26,6 +27,7 @@ $app->error(function(Exception $e, $code) use ($app) {
             ->setTo([$app['config.swiftmailer']['destination']])
             ->setBody(sprintf("Date='%s'\nUrl='%s' (%s)\nMessage='%s'\n", date('d-m-Y H:i:s'), $app['request']->getRequestUri(), $app['request']->getRealMethod(), $e->getMessage()))
         );
+         */
     }
     elseif ($code == "404")
     {

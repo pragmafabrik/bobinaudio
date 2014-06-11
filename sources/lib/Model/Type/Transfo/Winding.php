@@ -1,6 +1,10 @@
 <?php
 
-class Winding extends \Pomm\Type\Composite
+namespace Model\Type\Transfo;
+
+use \Pomm\Type\Composite;
+
+class Winding extends Composite
 {
     public $current;
     public $voltage;

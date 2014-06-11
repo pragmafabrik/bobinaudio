@@ -1,28 +1,38 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-        <table>
+        <table width="100%">
           <thead>
-            <th>
-              <td>Référence</td>
-              <td>Primaire</td>
-              <td>Secondaires</td>
-              <td>Puissance</td>
-              <td>Poids</td>
-              <td>dimension</td>
-              <td>Prix</td>
-            </th>
+            <tr>
+              <th>Référence</th>
+              <th>Primaire</th>
+              <th>Secondaires</th>
+              <th>Puissance</th>
+              <th>Poids</th>
+              <th>dimension</th>
+              <th>description</th>
+              <th>Prix</th>
+            </tr>
           </thead>
-{% for transfo in transformers %}
-          <tr>
-            <td>{{ transfo['reference'] }}</td>
-            <td>{{ transfo['pri'] }}</td>
-            <td>{{ transfo['secs']|join(' | ') }}</td>
-            <td>{{ transfo['power'] }}</td>
-            <td>{{ transfo['weight'] }}</td>
-            <td>{# transfo['dimension'] #}</td>
-            <td>{{ transfo['price'] }} €</td>
-          </tr>
+          <tbody>
+{% for transfo in transfo_pager.getCollection() %}
+            <tr>
+              <td>{{ transfo['ref'] }}</td>
+              <td><ul><li>{{ transfo['pri'] }}</li></ul></td>
+              <td>
+                <ul>
+                {% for winding in transfo['secs'] %}
+                  <li>{{ winding }}</li>
+                {% endfor %}
+                </ul>
+              </td>
+              <td>{{ transfo['power'] }}W</td>
+              <td>{{ transfo['weight'] }}Kg</td>
+              <td>{{ transfo['dimension'] }}</td>
+              <td>{{ transfo['hook_phrase'] }}</td>
+              <td>{{ transfo['public_price'] }} €</td>
+            </tr>
 {% endfor %}
+          </tbody>
         </table>
 {% endblock %}
