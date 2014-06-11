@@ -24,9 +24,9 @@ abstract class TransformerMap extends BaseObjectMap
         $this->addField('is_advertised', 'bool');
         $this->addField('public_price', 'numeric');
         $this->addField('special_offer', 'transfo.special_offer');
-        $this->addField('hook_phrase', 'text');
-        $this->addField('long_description', 'text');
         $this->addField('display_order', 'int4');
+        $this->addField('hook_phrase', 'public.hstore');
+        $this->addField('description', 'public.hstore');
 
         $this->pk_fields = array('');
     }

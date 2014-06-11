@@ -1,4 +1,28 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+        <table>
+          <thead>
+            <th>
+              <td>Référence</td>
+              <td>Primaire</td>
+              <td>Secondaires</td>
+              <td>Puissance</td>
+              <td>Poids</td>
+              <td>dimension</td>
+              <td>Prix</td>
+            </th>
+          </thead>
+{% for transfo in transformers %}
+          <tr>
+            <td>{{ transfo['reference'] }}</td>
+            <td>{{ transfo['pri'] }}</td>
+            <td>{{ transfo['secs']|join(' | ') }}</td>
+            <td>{{ transfo['power'] }}</td>
+            <td>{{ transfo['weight'] }}</td>
+            <td>{# transfo['dimension'] #}</td>
+            <td>{{ transfo['price'] }} €</td>
+          </tr>
+{% endfor %}
+        </table>
 {% endblock %}

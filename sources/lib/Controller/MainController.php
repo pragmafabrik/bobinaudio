@@ -68,9 +68,9 @@ class MainController implements ControllerProviderInterface
             return $this->app->abort(sprintf("No such category '%s'.", $category), 404);
         }
 
-        $transformers = $map->paginateFindWhere('is_online', [], 'ORDER BY is_on_top DESC, display_order DESC', 15, $this->app['request']->get('page', 1));
+        $transformers = $map->paginateFindWithDimensionWhere('is_online', [], 'ORDER BY is_on_top DESC, display_order DESC', 15, $this->app['request']->get('page', 1));
 
-        return $this->app['twig']->render(sprintf("category/%s.html.twig", $category), [ 'transformers' => $transformers ]);
+        return $this->app['twig']->render(sprintf("%s/category/%s.html.twig", $this->app['request']->get('_locale'), $category), [ 'transformers' => $transformers ]);
     }
 }
 
