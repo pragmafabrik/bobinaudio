@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+        <h1>Selfs de filtrage</h1>
+        <p>Description longue des selfs</p>
+        <hr />
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Référence</th>
+              <th>Tolérances</th>
+              <th>Inductance</th>
+              <th>Impédance</th>
+              <th>Poids</th>
+              <th>dimension</th>
+              <th>description</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+{% for transfo in transfo_pager.getCollection() %}
+            <tr>
+              <td>{{ transfo['ref'] }}</td>
+              <td>{{ transfo['pri'].getTolerance() }}</td>
+              <td>{{ transfo['inductance'] }}H</td>
+              <td>{{ transfo['pri'].getImpedance() }}</td>
+              <td>{{ transfo['weight'] }}Kg</td>
+              <td>{{ transfo['dimension'] }}</td>
+              <td>{{ transfo['hook_phrase'] }}</td>
+              <td>{{ transfo['public_price'] }} €</td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+{% endblock %}
+

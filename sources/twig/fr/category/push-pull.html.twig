@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+        <h1>Transformateurs de sortie type « push-pull »</h1>
+        <p>Description longue des PP</p>
+        <hr />
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Référence</th>
+              <th>Impédance primaire</th>
+              <th>Impédance secondaires</th>
+              <th>Puissance</th>
+              <th>Ultra linéaire</th>
+              <th>Courant repos</th>
+              <th>Poids</th>
+              <th>Dimension</th>
+              <th>Hauteur</th>
+              <th>Description</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+{% for transfo in transfo_pager.getCollection() %}
+            <tr>
+              <td>{{ transfo['ref'] }}</td>
+              <td>{{ transfo['z_pri']|number_format(0, ',', ' ') }}Ω</td>
+              <td><ul>{% for imp in transfo['z_secs'] %}<li>{{ imp }}Ω</li>{% endfor %}</ul></td>
+              <td>{{ transfo['power'] }}W</td>
+              <td>{% if transfo['ul'] is null %} non {% else %} {{ transfo['ul'] }}% {% endif %}</td>
+              <td>{{ transfo['pri_idc'] * 1000 }}mA</td>
+              <td>{{ transfo['weight'] }}Kg</td>
+              <td>{{ transfo['dimension'] }}</td>
+              <td>{{ transfo['height'] }}mm</td>
+              <td>{{ transfo['hook_phrase'] }}</td>
+              <td>{{ transfo['public_price'] }} €</td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+{% endblock %}
+
+

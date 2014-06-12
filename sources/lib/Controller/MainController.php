@@ -42,7 +42,7 @@ class MainController implements ControllerProviderInterface
                 ;
         case "self":
             return $this->app['pomm.connection']
-                ->getMapFor('\Model\Bobinaudio\Transfo\Self')
+                ->getMapFor('\Model\Bobinaudio\Transfo\Inductance')
                 ;
         case "push-pull":
             return $this->app['pomm.connection']

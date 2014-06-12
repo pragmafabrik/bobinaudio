@@ -10,16 +10,27 @@ class Winding extends Composite
     public $voltage;
     public $impedance;
 
-    public function __toString()
+    public function getTolerance()
     {
         $current = ($this->current >= 1000) ?  sprintf("%02.1fA", $this->current / 1000) : sprintf("%dmA", $this->current);
         $voltage = ($this->voltage % 10 == 0) ? sprintf("%dV", $this->voltage / 10) : sprintf("%02.1fV", $this->voltage / 10);
+
+        return sprintf("%s / %s", $voltage, $current);
+    }
+
+    public function getImpedance()
+    {
         if (!is_null($this->impedance))
         {
-            $impedance = ($this->impedance >= 10) ? sprintf("%dΩ", $this->impedance / 10) : sprintf("%02.1fΩ", $this->impedance / 10);
+            return ($this->impedance >= 100) ? sprintf("%dΩ", $this->impedance / 10) : sprintf("%1.01fΩ", $this->impedance / 10);
         }
+    }
 
-        return sprintf("%s / %s%s", $voltage, $current, isset($impedance) ? sprintf(" / %s", $impedance) : '');
+    public function __toString()
+    {
+        $impedance = $this->getImpedance();
+
+        return sprintf("%s%s", $this->getTolerance(), !is_null($impedance) ? sprintf(" / %s", $impedance) : '');
     }
 }
 
