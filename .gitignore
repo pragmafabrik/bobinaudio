@@ -1,3 +1,4 @@
+sources/lib/Model/Bobinaudio/Transfo/Base/*
 vendor/*
 .ctags
 log/*
