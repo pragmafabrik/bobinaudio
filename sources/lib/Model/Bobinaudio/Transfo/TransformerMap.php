@@ -36,10 +36,9 @@ class TransformerMap extends BaseTransformerMap
         $sql = <<<SQL
 select
   :transfo_fields,
-  ei.ref as dimension
+  (select ei.ref from :ei_table ei where ei.ei_dimension_id = transfo.ei_dimension_id) as dimension
 from
   :transfo_table transfo
-    inner join :ei_table ei using (ei_dimension_id)
 where
   :where 
 $suffix

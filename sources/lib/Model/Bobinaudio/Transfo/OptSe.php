@@ -5,6 +5,6 @@ namespace Model\Bobinaudio\Transfo;
 use \Pomm\Object\BaseObject;
 use \Pomm\Exception\Exception;
 
-class OptSe extends BaseObject
+class OptSe extends Transformer
 {
 }

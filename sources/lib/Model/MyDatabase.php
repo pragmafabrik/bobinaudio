@@ -12,7 +12,7 @@ class MyDatabase extends Database
     {
         parent::initialize();
 
-        $this->registerConverter('TransformerWinding', new PgRow($this, new RowStructure(['voltage' => 'int4', 'current' => 'int4', 'impedance' => 'int4' ]), '\Model\Type\Transfo\Winding'), [ 'transfo.winding' ]);
+        $this->registerConverter('TransformerWinding', new PgRow($this, new RowStructure(['current' => 'int4', 'impedance' => 'int4', 'voltage' => 'int4[]']), '\Model\Type\Transfo\Winding'), [ 'transfo.winding' ]);
         $this->registerConverter('HStore', new \Pomm\Converter\PgHStore(), array('public.hstore'));
 
         // register configuration or converters here

@@ -11,10 +11,10 @@
               <th>Primaire</th>
               <th>Secondaires</th>
               <th>Puissance</th>
+              <th>Dimension</th>
+              <th>Hauteur</th>
               <th>Poids</th>
-              <th>dimension</th>
               <th>description</th>
-              <th>Prix</th>
             </tr>
           </thead>
           <tbody>
@@ -30,10 +30,10 @@
                 </ul>
               </td>
               <td>{{ transfo['power'] }}W</td>
-              <td>{{ transfo['weight'] }}Kg</td>
               <td>{{ transfo['dimension'] }}</td>
+              <td>{{ transfo['height'] }}mm</td>
+              <td>{{ transfo['weight'] }}Kg</td>
               <td>{{ transfo['hook_phrase'] }}</td>
-              <td>{{ transfo['public_price'] }} €</td>
             </tr>
 {% endfor %}
           </tbody>
