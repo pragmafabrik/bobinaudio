@@ -11,10 +11,11 @@
               <th>Tolérances</th>
               <th>Inductance</th>
               <th>Impédance</th>
+              <th>Courant nominal</th>
               <th>Poids</th>
-              <th>dimension</th>
-              <th>description</th>
-              <th>Prix</th>
+              <th>Dimension</th>
+              <th>Hauteur</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -24,10 +25,11 @@
               <td>{{ transfo['pri'].getTolerance() }}</td>
               <td>{{ transfo['inductance'] }}H</td>
               <td>{{ transfo['pri'].getImpedance() }}</td>
+              <td>{{ transfo['pri_idc'] }}mA</td>
               <td>{{ transfo['weight'] }}Kg</td>
               <td>{{ transfo['dimension'] }}</td>
+              <td>{{ transfo['height'] }}mm</td>
               <td>{{ transfo['hook_phrase'] }}</td>
-              <td>{{ transfo['public_price'] }} €</td>
             </tr>
 {% endfor %}
           </tbody>

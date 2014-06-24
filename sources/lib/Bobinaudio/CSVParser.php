@@ -6,7 +6,7 @@ abstract class CSVParser
 {
     static public function validate($line)
     {
-        $parser = new self();
+        $parser = new static();
 
         return $parser->clean($line);
     }

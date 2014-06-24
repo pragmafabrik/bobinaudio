@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search" />
+                </div>
+                <div class="form-group">
+                  <select name="transformer_type" class="form-control">
+                    <option value="">type</option>
+                    <option value="psu">psu</option>
+                    <option value="self">self</option>
+                    <option value="opt_se">opt_se</option>
+                    <option value="opt_pp">opt_pp</option>
+                  </select>
+                </div>
+                <button class="btn btn-success">&#10149; go</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Déconnexion</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    {% block admin_content %}{% endblock %}
+{% endblock %}

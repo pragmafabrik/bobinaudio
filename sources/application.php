@@ -4,6 +4,7 @@ use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
 
 $app = require "bootstrap.php";
+$app->mount('/admin', new \Controller\AdminController());
 $app->mount('/{_locale}/', new \Controller\MainController());
 
 $app->get('/', function() use ($app) { return $app->redirect($app['url_generator']->generate('main_index', [ '_locale' => 'fr' ])); })->bind('index');

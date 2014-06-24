@@ -82,4 +82,12 @@ SQL;
 
         return $this->paginateQuery($sql, sprintf('select count(*) from %s', $this->getTableName()), $params, $rpp, $page);
     }
+
+    public function findForRefSearch($string)
+    {
+        $sql = 'select transformer_id, ref, tableoid::regclass from :transformer_table where ref like $*';
+        $sql = strtr($sql, [ 'transformer_table' => $this->getTableName() ]);
+
+        return $this->query($sql [sprintf('%s%%', $string)]);
+    }
 }

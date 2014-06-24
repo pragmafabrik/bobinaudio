@@ -17,6 +17,12 @@
              </ul>
           </li>
         </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" id="ref_autocomplete" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Référence</button>
+        </form>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ app.url_generator.generate('main_index', { "_locale": "en" }) }}"><img src="/images/en.png" style="max-width: 28px;" /></a></li>
         </ul>

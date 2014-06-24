@@ -19,4 +19,9 @@ class Transformer extends BaseObject
     {
         return sprintf("%.1f", $this->get('weight'));
     }
+
+    public function getHookPhrase()
+    {
+        return empty($this->get('hook_phrase')) ? '--' : $this->get('hook_phrase');
+    }
 }

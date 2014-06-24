@@ -13,6 +13,7 @@ require PROJECT_DIR.'/sources/config/environment.php';
 
 // autoloader
 $loader = require PROJECT_DIR.'/vendor/autoload.php';
+$loader->add('Google_', PROJECT_DIR.'/vendor/google/google-api-php-client/src');
 $loader->add(false, PROJECT_DIR.'/sources/lib');
 
 $app = new Silex\Application();
@@ -53,8 +54,6 @@ if (preg_match('/^dev/', ENV))
         function($connection, $app) { $connection->setLogger($app['monolog']); return $connection; }
         ));
     $app['twig'] = $app->share($app->extend('twig', function($twig, $app) { $twig->addExtension(new Twig_Extension_Debug()); return $twig; }));
-
-
 }
 
 return $app;

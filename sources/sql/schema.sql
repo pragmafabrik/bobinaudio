@@ -180,7 +180,8 @@ CREATE TABLE transformer (
 
 CREATE TABLE inductance (
     pri winding NOT NULL,
-    inductance numeric(5,3) NOT NULL
+    inductance numeric(5,3) NOT NULL,
+    pri_idc numeric(3,2) NOT NULL
 )
 INHERITS (transformer);
 ALTER TABLE ONLY inductance ALTER COLUMN height SET NOT NULL;
