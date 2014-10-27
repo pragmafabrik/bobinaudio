@@ -42,11 +42,30 @@
     <!-- Placed at the end of the document so the pages load faster -->
 {% if constant('ENV') == "prod" %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 {% else %}
 <script src="/js/jquery-2.1.0.min.js"></script>
+<link rel="stylesheet" href="/css/jquery-ui-1.10.4.min.css" />
+<script src="/js/jquery-ui-1.10.4.min.js"></script>
 {% endif %}
 
 <script src="/js/bootstrap.min.js"></script>
-
+<script type="javascript">
+document.onLoad(function() {
+    $("#ref_autocomplete").autocomplete({
+        "source": function(request, response) {
+            $.ajax({
+                "url": "{{ app.url_generator.generate("ajax_search_ref") }}",
+                "success": function(data) {
+                    return response($.map(data.results, function( item ) { return {"label": item.reference, "value": item.reference }; }));
+                }
+            }) /* ajax */
+        }, /* source function */
+        "min_length": 2 
+    }); /* autocomplete */
+}
+)
+</script>
   </body>
 </html>

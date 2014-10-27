@@ -32,16 +32,11 @@ $app->register(new Provider\SessionServiceProvider());
 $app->register(new Provider\TwigServiceProvider(), array(
     'twig.path' => array(PROJECT_DIR.'/sources/twig'),
 ));
-$app->register(new \Pomm\Silex\PommServiceProvider(), array(
-    'pomm.databases' => $app['config.pomm.dsn'][ENV]
-));
+$app['pomm'] = $app->share(function() use ($app) { return new \PommProject\Foundation\Pomm($app['config.pomm.dsn'][ENV]); });
 
-// Service container customization. 
+// Service container customization.
 $app['loader'] = $loader;
-$app['pomm.connection'] = $app->share(function() use ($app) { return $app['pomm']
-    ->getDatabase()
-    ->createConnection();
-    });
+$app['session'] = $app->share($app->extend('session', function($session, $app) { return new \Bobinaudio\Session($app['session.storage'], null, null, $app['pomm']['bobinaudio']); }));
 
 // set DEBUG mode or not
 if (preg_match('/^dev/', ENV))
@@ -50,8 +45,8 @@ if (preg_match('/^dev/', ENV))
     $app->register(new Provider\MonologServiceProvider(), array(
         'monolog.logfile' => PROJECT_DIR.'/log/app.log'
         ));
-    $app['pomm.connection'] = $app->share($app->extend('pomm.connection',
-        function($connection, $app) { $connection->setLogger($app['monolog']); return $connection; }
+    $app['pomm'] = $app->share($app->extend('pomm',
+        function($pomm, $app) { $pomm->setLogger($app['monolog']); return $pomm; }
         ));
     $app['twig'] = $app->share($app->extend('twig', function($twig, $app) { $twig->addExtension(new Twig_Extension_Debug()); return $twig; }));
 }

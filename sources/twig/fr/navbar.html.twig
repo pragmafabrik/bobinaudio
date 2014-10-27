@@ -14,7 +14,7 @@
               <li class="dropdown-header">Audio</li>
               <li><a href="{{ app.url_generator.generate('main_list', { "category": "push-pull", "_locale": "fr" }) }}">Push Pull</a></li>
               <li><a href="{{ app.url_generator.generate('main_list', { "category": "single-ended", "_locale": "fr" }) }}">Single Ended</a></li>
-             </ul>
+            </ul>
           </li>
         </ul>
         <form class="navbar-form navbar-left" role="search">
@@ -24,7 +24,12 @@
           <button type="submit" class="btn btn-default">Référence</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ app.url_generator.generate('main_index', { "_locale": "en" }) }}"><img src="/images/en.png" style="max-width: 28px;" /></a></li>
+{% if app.session.isLogged %}
+          <li><a href="#">Déco</a></li>
+{% else %}
+          <li>&nbsp;</li>
+{% endif %}
+          <li><a href="{{ app.url_generator.generate('main_index', { "_locale": "en" }) }}"><img src="/images/en.png" style="max-width: 28px;" /></a></li>
         </ul>
       </div>
     </div>

@@ -7,6 +7,8 @@ use Silex\ControllerProviderInterface;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
 
+use \PommProject\Foundation\Where;
+
 class MainController implements ControllerProviderInterface
 {
     protected $app;
@@ -32,43 +34,41 @@ class MainController implements ControllerProviderInterface
         return $this->app["twig"]->render(sprintf("%s/navbar.html.twig", $this->app['request']->get('_locale')), [ 'route' => $this->app['request']->get('route', 'main_index') ] );
     }
 
-    protected function getMapForCategory($category)
+    protected function getModelForCategory($category)
     {
+        $session = $this->app['pomm']['bobinaudio'];
         switch($category)
         {
         case "alimentation":
-            return $this->app['pomm.connection']
-                ->getMapFor('\Model\Bobinaudio\Transfo\Psu')
+            return $session
+                ->getModel('\Model\Bobinaudio\TransfoSchema\PsuModel')
                 ;
         case "self":
-            return $this->app['pomm.connection']
-                ->getMapFor('\Model\Bobinaudio\Transfo\Inductance')
+            return $session
+                ->getModel('\Model\Bobinaudio\TransfoSchema\InductanceModel')
                 ;
         case "push-pull":
-            return $this->app['pomm.connection']
-                ->getMapFor('\Model\Bobinaudio\Transfo\OptPp')
+            return $session
+                ->getModel('\Model\Bobinaudio\TransfoSchema\OptPpModel')
                 ;
         case "single-ended":
-            return $this->app['pomm.connection']
-                ->getMapFor('\Model\Bobinaudio\Transfo\OptSe')
+            return $session
+                ->getModel('\Model\Bobinaudio\TransfoSchema\OptSeModel')
                 ;
         }
 
-        throw new \InvalidParameterException(sprintf("I do not know map class for category '%s'.", $category));
+        throw new \InvalidParameterException(sprintf("I do not know model class for category '%s'.", $category));
     }
 
     public function executeList($category)
     {
-        try
-        {
-            $map = $this->getMapForCategory($category);
-        }
-        catch (\InvalidParameterException $e)
-        {
+        try {
+            $model = $this->getModelForCategory($category);
+        } catch (\InvalidParameterException $e) {
             return $this->app->abort(sprintf("No such category '%s'.", $category), 404);
         }
 
-        $transfo_pager = $map->paginateFindWithDimensionWhere('is_online', [], 'ORDER BY is_on_top DESC, display_order DESC', 15, $this->app['request']->get('page', 1));
+        $transfo_pager = $model->paginateFindWithDimensionWhere(new Where('is_online'), 'order by is_on_top desc, display_order desc', 15, $this->app['request']->get('page', 1));
 
         return $this->app['twig']->render(sprintf("%s/category/%s.html.twig", $this->app['request']->get('_locale'), $category), [ 'transfo_pager' => $transfo_pager ]);
     }
