@@ -1,19 +1,23 @@
 {
     "minimum-stability": "stable",
     "require": {
-        "pomm-project/foundation": "master-dev",
-        "pomm-project/model-manager": "master-dev",
-        "pomm-project/cli": "master-dev",
+        "pomm-project/foundation": "2.0.*@dev",
+        "pomm-project/model-manager": "2.0.*@dev",
+        "pomm-project/cli": "2.0.*@dev",
+        "pomm-project/pomm-service-provider": "dev-silex-1",
+        "pomm-project/pomm-profiler-service-provider": "dev-silex-1",
+        "pomm-project/pomm-symfony-bridge": "2.0.*@dev",
         "monolog/monolog": "1.6.*@dev",
-        "symfony/twig-bridge": "2.4.*",
+        "symfony/twig-bridge": "2.5.*",
         "erusev/parsedown": "0.7.*",
         "silex/silex": "1.2.*",
-        "symfony/validator": "2.4.*",
-        "symfony/form": "2.4.*",
+        "symfony/validator": "2.5.*",
+        "symfony/form": "2.5.*",
         "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
-        "twig/twig": "1.*",
-        "symfony/translation": "2.4.*",
-        "symfony/config": "2.4.*",
-        "symfony/security-csrf": "2.4.*"
+        "twig/twig": "~1.0",
+        "silex/web-profiler": "~1.0",
+        "symfony/translation": "2.5.*",
+        "symfony/config": "2.5.*",
+        "symfony/security-csrf": "2.5.*"
     }
 }

@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-{% for transfo in transfo_pager.getCollection() %}
+{% for transfo in transfo_pager.getIterator() %}
             <tr>
               <td>{{ transfo['ref'] }}</td>
               <td>{{ transfo['pri'].getTolerance() }}</td>

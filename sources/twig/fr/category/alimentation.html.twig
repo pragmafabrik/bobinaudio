@@ -38,4 +38,25 @@
 {% endfor %}
           </tbody>
         </table>
+        <div class="align-center">
+          <ul class="pagination">
+{% if transfo_pager.isPreviousPage %}
+            <li><a href="{{ app.url_generator.generate('main_list', {"category": "alimentation", "page": transfo_pager.getPage() - 1 }) }}">&laquo;</a></li>
+{% else %}
+            <li class="disabled"><a href="#">&laquo;</a></li>
+{% endif %}
+{% for page in 1..transfo_pager.getLastPage() %}
+{% if page == transfo_pager.getPage() %}
+            <li class="active"><a href="{{ app.url_generator.generate('main_list', { "category": "alimentation", "page": page }) }}">{{ page }}</a></li>
+{% else %}
+            <li><a href="{{ app.url_generator.generate('main_list', { "category": "alimentation", "page": page }) }}">{{ page }}</a></li>
+{% endif %}
+{% endfor %}
+{% if transfo_pager.isNextPage() %}
+            <li><a href="{{ app.url_generator.generate('main_list', {"category": "alimentation", "page": transfo_pager.getPage() + 1 }) }}">&raquo;</a></li>
+{% else %}
+            <li class="disabled"><a href="#">&raquo;</a></li>
+{% endif %}
+          </ul>
+        </div>
 {% endblock %}

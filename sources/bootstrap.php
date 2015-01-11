@@ -32,7 +32,7 @@ $app->register(new Provider\SessionServiceProvider());
 $app->register(new Provider\TwigServiceProvider(), array(
     'twig.path' => array(PROJECT_DIR.'/sources/twig'),
 ));
-$app['pomm'] = $app->share(function() use ($app) { return new \PommProject\Foundation\Pomm($app['config.pomm.dsn'][ENV]); });
+$app->register(new PommProject\Silex\ServiceProvider\PommServiceProvider(), ['pomm.configuration' => $app['config.pomm.dsn'][ENV]]);
 
 // Service container customization.
 $app['loader'] = $loader;
@@ -43,12 +43,17 @@ if (preg_match('/^dev/', ENV))
 {
     $app['debug'] = true;
     $app->register(new Provider\MonologServiceProvider(), array(
-        'monolog.logfile' => PROJECT_DIR.'/log/app.log'
-        ));
-    $app['pomm'] = $app->share($app->extend('pomm',
-        function($pomm, $app) { $pomm->setLogger($app['monolog']); return $pomm; }
+        'monolog.logfile' => PROJECT_DIR.'/log/app.log',
+        'monolog.level'   => Monolog\Logger::INFO,
         ));
     $app['twig'] = $app->share($app->extend('twig', function($twig, $app) { $twig->addExtension(new Twig_Extension_Debug()); return $twig; }));
+    $app->register(new Silex\Provider\ServiceControllerServiceProvider());
+    $app->register(new Provider\WebProfilerServiceProvider(),
+        [
+            'profiler.cache_dir' => PROJECT_DIR.'/cache/profiler',
+            'profiler.mount_prefix' => '/_profiler', // this is the default
+        ]);
+    $app->register(new PommProject\Silex\ProfilerServiceProvider\PommProfilerServiceProvider());
 }
 
 return $app;
