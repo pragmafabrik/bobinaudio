@@ -8,16 +8,17 @@
         "pomm-project/pomm-profiler-service-provider": "dev-silex-1",
         "pomm-project/pomm-symfony-bridge": "2.0.*@dev",
         "monolog/monolog": "1.6.*@dev",
-        "symfony/twig-bridge": "2.5.*",
+        "symfony/twig-bridge": "~2.5",
         "erusev/parsedown": "0.7.*",
-        "silex/silex": "1.2.*",
-        "symfony/validator": "2.5.*",
-        "symfony/form": "2.5.*",
+        "silex/silex": "~1.0",
+        "symfony/validator": "~2.5",
+        "symfony/form": "~2.5",
         "swiftmailer/swiftmailer": ">=4.1.2,<4.2-dev",
         "twig/twig": "~1.0",
         "silex/web-profiler": "~1.0",
-        "symfony/translation": "2.5.*",
-        "symfony/config": "2.5.*",
-        "symfony/security-csrf": "2.5.*"
+        "symfony/translation": "~2.5",
+        "symfony/config": "~2.5",
+        "symfony/security-csrf": "~2.5",
+        "symfony/yaml": "~2.5"
     }
 }
